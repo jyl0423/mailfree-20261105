@@ -6,7 +6,7 @@
 
 An open-source **temporary email service** built on Cloudflare Workers + D1 + R2, featuring a decoupled frontend and backend, RESTful API support, and full functionality including email receiving, sending, forwarding, and user management.
 
-**Current version: V5.3.2** - Security fix: an address already owned by another user can no longer be claimed (cross-user mailbox takeover, [issue #73](https://github.com/idinging/freemail/issues/73)).
+**Current version: V5.3.2** -  Security fix: an address already owned by another user can no longer be claimed (cross-user mailbox takeover, [issue #73](https://github.com/idinging/freemail/issues/73)).
 
 `This email service supports automatic mailbox creation upon receiving emails. Forwarding target email addresses must be verified in Cloudflare Email Addresses.`
 
