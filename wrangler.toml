@@ -9,7 +9,7 @@ keep_vars=true
 binding = "TEMP_MAIL_DB"
 database_name = "mail_free_db" #你的d1数据库名称
 database_id = "62fbf865-474f-41c0-9b7f-2a99b57d88db" # 你的database_id
-# 登录会话过期时间（单位：天，默认7天）
+# 登录会话过期时间（单位：天，默认36500天）
 # 环境变量
 [vars]
 # FORWARD_RULES="[{"prefix":"vip","email":"a@example.com"},{"prefix":"*","email":"example@qq.com"}]"
@@ -18,7 +18,7 @@ ADMIN_PASSWORD="smile520."
 GUEST_PASSWORD="guest"
 JWT_TOKEN="dfvhluhdaslufhvdv"
 JWT_TOKENGUEST_PASSWORD="dfsfsfxzcv"
-SESSION_EXPIRE_DAYS="365"
+SESSION_EXPIRE_DAYS="36500"
 MAIL_DOMAIN="你的域名列表"
 RESEND_API_KEY="RESEND发件密钥"
 SENDFLARE_API_KEY="SENDFLARE发件密钥"

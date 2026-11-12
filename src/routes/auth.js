@@ -6,7 +6,7 @@
 import { Hono } from 'hono';
 import { getInitializedDatabase } from '../db/index.js';
 import { createJwt, buildSessionCookie, verifyMailboxLogin, verifyPassword } from '../middleware/auth.js';
-import { rateLimiter } from '../middleware/app.js';
+// import { rateLimiter } from '../middleware/app.js';
 import { invalidateSystemStatCache } from '../utils/cache.js';
 
 const router = new Hono();
@@ -18,7 +18,10 @@ router.post('/api/logout', (c) => {
   return c.json({ success: true });
 });
 
-router.post('/api/login', rateLimiter({ windowMs: 60_000, max: 10 }), async (c) => {
+router.post('/api/login',
+  // 暂时停用登录 IP 限流，需要时取消注释恢复。
+  // rateLimiter({ windowMs: 60_000, max: 10 }),
+  async (c) => {
   let DB;
   try {
     DB = await getInitializedDatabase(c.env);
@@ -30,7 +33,7 @@ router.post('/api/login', rateLimiter({ windowMs: 60_000, max: 10 }), async (c) 
   const ADMIN_PASSWORD = c.env.ADMIN_PASSWORD || c.env.ADMIN_PASS || '';
   const GUEST_PASSWORD = c.env.GUEST_PASSWORD || '';
   const JWT_TOKEN = c.env.JWT_TOKEN || c.env.JWT_SECRET || '';
-  const SESSION_EXPIRE_DAYS = parseInt(c.env.SESSION_EXPIRE_DAYS, 10) || 7;
+  const SESSION_EXPIRE_DAYS = parseInt(c.env.SESSION_EXPIRE_DAYS, 10) || 36500;
 
   let body;
   try { body = await c.req.json(); } catch (_) { return c.text('Bad Request', 400); }

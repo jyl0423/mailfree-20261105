@@ -6,7 +6,7 @@
 export const COOKIE_NAME = 'iding-session';
 
 // 默认会话过期时间（天）
-const DEFAULT_SESSION_EXPIRE_DAYS = 7;
+const DEFAULT_SESSION_EXPIRE_DAYS = 36500;
 
 // CryptoKey 缓存（全局共享，避免每次请求重复 importKey）
 const keyCache = new Map();
@@ -43,7 +43,7 @@ export function getSessionExpireSeconds(days) {
  * 创建JWT令牌
  * @param {string} secret - JWT签名密钥
  * @param {object} extraPayload - 额外的负载数据
- * @param {number} expireDays - 过期天数（可选，默认从环境变量或7天）
+ * @param {number} expireDays - 过期天数（可选，默认36500天）
  * @returns {Promise<string>} 生成的JWT令牌
  */
 export async function createJwt(secret, extraPayload = {}, expireDays = DEFAULT_SESSION_EXPIRE_DAYS) {
@@ -87,7 +87,7 @@ export async function verifyJwt(secret, cookieHeader) {
  * 构建会话Cookie字符串
  * @param {string} token - JWT令牌
  * @param {string} reqUrl - 请求URL
- * @param {number} expireDays - 过期天数（可选，默认7天）
+ * @param {number} expireDays - 过期天数（可选，默认36500天）
  * @returns {string} Cookie字符串
  */
 export function buildSessionCookie(token, reqUrl = '', expireDays = DEFAULT_SESSION_EXPIRE_DAYS) {
